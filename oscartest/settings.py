@@ -52,7 +52,21 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'widget_tweaks',
-] + get_core_apps()
+] + get_core_apps(['forkedapps.address',
+                   'forkedapps.analytics',
+                   'forkedapps.basket',
+                   'forkedapps.catalogue',
+                   'forkedapps.checkout',
+                   'forkedapps.customer',
+                   'forkedapps.dashboard',
+                   'forkedapps.order',
+                   'forkedapps.partner',
+                   'forkedapps.payment',
+                   'forkedapps.promotions',
+                   'forkedapps.search',
+                   'forkedapps.shipping',
+                   'forkedapps.voucher',
+                   'forkedapps.wishlists'])
 
 SITE_ID = 1
 MIDDLEWARE_CLASSES = (
@@ -145,7 +159,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-OSCAR_SHOP_NAME = 'Mnzilcom'
+OSCAR_SHOP_NAME = 'Mnzil.Com'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
