@@ -52,21 +52,23 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'compressor',
     'widget_tweaks',
-] + get_core_apps(['forkedapps.address',
-                   'forkedapps.analytics',
-                   'forkedapps.basket',
-                   'forkedapps.catalogue',
-                   'forkedapps.checkout',
-                   'forkedapps.customer',
-                   'forkedapps.dashboard',
-                   'forkedapps.order',
-                   'forkedapps.partner',
-                   'forkedapps.payment',
-                   'forkedapps.promotions',
-                   'forkedapps.search',
-                   'forkedapps.shipping',
-                   'forkedapps.voucher',
-                   'forkedapps.wishlists'])
+] + get_core_apps(['forkedapps.dashboard',
+                   #'forkedapps.address',
+                   #'forkedapps.analytics',
+                   #'forkedapps.basket',
+                  'forkedapps.catalogue',
+                  'forkedapps.checkout',
+                  # 'forkedapps.customer',
+                   #'forkedapps.dashboard',
+                  #'forkedapps.order',
+                   'forkedapps.partner'
+                   #'forkedapps.payment',
+                   #'forkedapps.promotions',
+                   #'forkedapps.search',
+                   #'forkedapps.shipping',
+                   #'forkedapps.voucher',
+                   #'forkedapps.wishlists'
+                   ])
 
 SITE_ID = 1
 MIDDLEWARE_CLASSES = (
