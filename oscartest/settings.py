@@ -15,6 +15,9 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+location = lambda x: os.path.join(
+    os.path.dirname(os.path.realpath(__file__)), x)
+
 from oscar.defaults import *
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -71,6 +74,61 @@ INSTALLED_APPS = [
                    ])
 
 SITE_ID = 1
+
+
+
+###
+
+# from oscar import OSCAR_MAIN_TEMPLATE_DIR
+#  
+# TEMPLATES = [
+#     {
+#         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+#         'DIRS': [
+#             os.path.join(BASE_DIR, 'templates'),
+#             OSCAR_MAIN_TEMPLATE_DIR
+#         ],
+#         'APP_DIRS': True,
+#         'OPTIONS': {
+#             'context_processors': [
+#                 'django.template.context_processors.debug',
+#                 'django.template.context_processors.request',
+#                 'django.contrib.auth.context_processors.auth',
+#                 'django.contrib.messages.context_processors.messages',
+#  
+#                 'oscar.apps.search.context_processors.search_form',
+#                 'oscar.apps.promotions.context_processors.promotions',
+#                 'oscar.apps.checkout.context_processors.checkout',
+#                 'oscar.apps.customer.notifications.context_processors.notifications',
+#                 'oscar.core.context_processors.metadata',
+#             ],
+#         },
+#     },
+# ]
+
+
+#######from here
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+    # needed by django-treebeard for admin (and potentially other libs)
+    'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+  
+                'oscar.apps.search.context_processors.search_form',
+                'oscar.apps.promotions.context_processors.promotions',
+                'oscar.apps.checkout.context_processors.checkout',
+                'oscar.apps.customer.notifications.context_processors.notifications',
+                'oscar.core.context_processors.metadata',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -83,36 +141,21 @@ MIDDLEWARE_CLASSES = (
     'oscar.apps.basket.middleware.BasketMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 )
-
 ROOT_URLCONF = 'oscartest.urls'
 
-
+# Add another path to Oscar's templates.  This allows templates to be
+# customised easily.
 from oscar import OSCAR_MAIN_TEMPLATE_DIR
+TEMPLATE_DIRS = (
+     location('templates'),
+     OSCAR_MAIN_TEMPLATE_DIR
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            OSCAR_MAIN_TEMPLATE_DIR
-        ],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+)
 
-                'oscar.apps.search.context_processors.search_form',
-                'oscar.apps.promotions.context_processors.promotions',
-                'oscar.apps.checkout.context_processors.checkout',
-                'oscar.apps.customer.notifications.context_processors.notifications',
-                'oscar.core.context_processors.metadata',
-            ],
-        },
-    },
-]
+####### to here
+
+
+
 
 WSGI_APPLICATION = 'oscartest.wsgi.application'
 
