@@ -1,0 +1,23 @@
+<h1>Partners</h1>
+
+<ul>
+  {% for partner in object_list %}
+    <li class="contact">{{ partner.display_name }}</li>
+    <li class="contact">{{ partner.id }}</li>
+	    <ul>
+	    {% for s in partner.stockrecords.all%}
+	    	 <li class="contact">{{ s.partner_sku}}</li>
+	    	 <ul>
+			   
+			    	 <li class="contact">{{ s.product}}</li>
+			    	 <li class="contact">{{ s.price_retail}}</li>
+			    	 <li class="contact">{{ s.product.num_stockrecords}}</li>
+			    	 <li class="contact">{{ s.num_in_stock}}</li>
+			    	 <li class="contact">{{ s.net_stock_level}}</li>
+		    	
+		    </ul>
+    	{% endfor %}
+	    </ul>
+    	
+  {% endfor %}
+</ul>
